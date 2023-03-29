@@ -74,25 +74,30 @@ public class Controller implements Initializable {
     @FXML
     void askForChangePasswords() {
 
-        boolean confirmation = myConfirmation("Potwierdź operację", "Czy na pewno chcesz wykonać tą akcję?", "Operacja zmieni hasła zaznaczonym użytkownikom");
-        if (confirmation) {
+        selectedUsers = usersCheckList.getSelectionModel().getSelectedValues();
+        int countedUsers = selectedUsers.size();
 
-            Integer length = spinner.getValue();
-            selectedUsers = usersCheckList.getSelectionModel().getSelectedValues();
+        if (countedUsers == 0) {
+            myAlert(Alert.AlertType.ERROR, "Wystąpił błąd", "Błąd z listą użytkowników", "Lista użytkowników jest pusta");
+        } else {
+            boolean confirmation = myConfirmation("Potwierdź operację", "Czy na pewno chcesz wykonać tą akcję?", "Operacja zmieni hasła zaznaczonym użytkownikom");
+            if (confirmation) {
 
-            int countedUsers = selectedUsers.size();
+                Integer length = spinner.getValue();
 
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Zapisz plik z hasłami");
-            fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("Pliki CSV", "*.csv"),
-                    new FileChooser.ExtensionFilter("Wszystkie pliki", "*.*"));
+                if (countedUsers == 0) {
+                    myAlert(Alert.AlertType.ERROR, "Wystąpił błąd", "Brak wymaganych danych", "Nie zaznaczyłeś użytkowników");
+                }
 
-            File file = fileChooser.showSaveDialog(new Stage());
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Zapisz plik z hasłami");
+                fileChooser.getExtensionFilters().addAll(
+                        new FileChooser.ExtensionFilter("Pliki CSV", "*.csv"),
+                        new FileChooser.ExtensionFilter("Wszystkie pliki", "*.*"));
 
-            if (countedUsers == 0) {
-                myAlert(Alert.AlertType.ERROR, "Wystąpił błąd", "Błąd z listą użytkowników", "Lista użytkowników jest pusta");
-            } else {
+                File file = fileChooser.showSaveDialog(new Stage());
+
+
                 if (file != null) {
                     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
                         for (String login : selectedUsers) {
@@ -114,7 +119,6 @@ public class Controller implements Initializable {
                 }
 
             }
-
         }
     }
 
@@ -212,6 +216,7 @@ public class Controller implements Initializable {
                     }
                 }
             }
+            checkAll();
             usersCheckList.setItems(users);
         }
     }
