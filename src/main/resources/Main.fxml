@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckListView?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="560.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ad_passchanger.ad_passchanger.Controller">
+   <children>
+      <Text layoutX="317.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista użytkowników">
+         <font>
+            <Font name="Visby Round CF Medium" size="22.0" />
+         </font>
+      </Text>
+      <MFXCheckListView fx:id="usersCheckList" layoutX="258.0" layoutY="80.0" prefHeight="508.0" prefWidth="282.0" />
+      <MFXButton buttonType="RAISED" layoutX="273.0" layoutY="603.0" minHeight="27.0" minWidth="66.0" onAction="#checkAll" prefHeight="37.0" prefWidth="66.0" text="Zaznacz" />
+      <ImageView fitHeight="37.0" fitWidth="32.0" layoutX="7.0" layoutY="662.0" onMouseClicked="#aboutProgram"
+                 pickOnBounds="true" preserveRatio="true">
+         <Image url="@images/about.png"/>
+      </ImageView>
+      <Text layoutX="258.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font name="Visby Round CF Medium" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="66.0" layoutY="682.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zmianę haseł dla pojedynczych kont oferuje NetUser lub przystawka Active Directory" />
+      <ImageView fitHeight="37.0" fitWidth="32.0" layoutX="274.0" layoutY="30.0" onMouseClicked="#aboutProgram"
+                 pickOnBounds="true" preserveRatio="true">
+         <Image url="@images/usersList.png"/>
+      </ImageView>
+      <AnchorPane layoutY="425.0" prefHeight="231.0" prefWidth="241.0"
+                  style="-fx-background-color: #f0ecec; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);"
+                  stylesheets="@../../../../NetUser/app/src/main/resources/css/stylesheet.css">
+         <Text fill="WHITE" layoutX="46.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <font>
+               <Font name="Visby Round CF Medium" size="18.0"/>
+            </font>
+         </Text>
+         <Spinner fx:id="spinner" layoutX="51.0" layoutY="88.0" prefHeight="38.0" prefWidth="149.0"/>
+         <Text layoutX="79.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Długość hasła">
+            <font>
+               <Font name="Visby Round CF Medium" size="18.0"/>
+            </font>
+         </Text>
+         <ImageView fitHeight="37.0" fitWidth="32.0" layoutX="41.0" layoutY="44.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@images/pas.png"/>
+         </ImageView>
+         <MFXButton buttonType="RAISED" layoutX="59.0" layoutY="147.0" minHeight="27.0" minWidth="70.0"
+                    onAction="#askForChangePasswords" prefHeight="37.0" prefWidth="133.0" text="Ustaw hasła"/>
+      </AnchorPane>
+      <AnchorPane prefHeight="425.0" prefWidth="241.0"
+                  style="-fx-background-color: #106ebe; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);">
+         <Text fill="WHITE" layoutX="46.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0">
+            <font>
+               <Font name="Visby Round CF Medium" size="18.0"/>
+            </font>
+         </Text>
+         <Text fill="WHITE" layoutX="79.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwa OU">
+            <font>
+               <Font name="Visby Round CF Medium" size="18.0"/>
+            </font>
+         </Text>
+         <MFXTextField fx:id="OU_Name" accessibleText="g" floatMode="BORDER" floatingText="OU" layoutX="44.0"
+                       layoutY="77.0" prefHeight="37.0" prefWidth="159.0" textLimit="50">
+            <font>
+               <Font name="Visby Round CF Medium" size="12.0"/>
+            </font>
+         </MFXTextField>
+         <MFXButton fx:id="searchBtn" buttonType="RAISED" layoutX="54.0" layoutY="136.0" minHeight="27.0"
+                    minWidth="70.0" onAction="#showUsers" prefHeight="37.0" prefWidth="133.0" text="Wyświetl"/>
+         <ImageView fitHeight="37.0" fitWidth="32.0" layoutX="38.0" layoutY="30.0" onMouseClicked="#aboutProgram"
+                    pickOnBounds="true" preserveRatio="true">
+            <Image url="@images/OU.png"/>
+         </ImageView>
+         <Text fill="WHITE" layoutX="51.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0"
+               text="Nie znasz nazwy OU?">
+            <font>
+               <Font name="System Bold" size="18.0"/>
+            </font>
+         </Text>
+         <MFXTextField fx:id="exampleUser" floatMode="BORDER" floatingText="Przykładowy użytkownik" layoutX="41.0"
+                       layoutY="271.0" prefHeight="37.0" prefWidth="159.0" textLimit="50">
+            <font>
+               <Font name="Visby Round CF Medium" size="12.0"/>
+            </font>
+         </MFXTextField>
+         <MFXButton buttonType="RAISED" layoutX="54.0" layoutY="334.0" minHeight="27.0" minWidth="70.0"
+                    onAction="#getOU_DC" prefHeight="37.0" prefWidth="133.0" text="Szukaj"/>
+         <ImageView fitHeight="37.0" fitWidth="32.0" layoutX="12.0" layoutY="222.0" pickOnBounds="true"
+                    preserveRatio="true">
+            <Image url="@images/info.png"/>
+         </ImageView>
+      </AnchorPane>
+      <MFXButton buttonType="RAISED" layoutX="418.0" layoutY="603.0" minHeight="27.0" minWidth="70.0" onAction="#clearUsers" prefHeight="37.0" prefWidth="111.0" text="Wyczyść listę" />
+      <MFXButton buttonType="RAISED" layoutX="345.0" layoutY="603.0" minHeight="27.0" minWidth="66.0" onAction="#unCheckAll" prefHeight="37.0" prefWidth="66.0" text="Odznacz" />
+   </children>
+</AnchorPane>

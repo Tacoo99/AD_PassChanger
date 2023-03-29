@@ -1,0 +1,77 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.javamodularity.moduleplugin' version '1.8.12'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.beryx.jlink' version '2.25.0'
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/resources"]
+            includes = ["**/*.fxml", "**/*.css", "**/*.png", "**/*.ico"]
+        }
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.9.1'
+}
+
+sourceCompatibility = '19'
+targetCompatibility = '19'
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+application {
+    mainModule = 'com.ad_passchanger.ad_passchanger'
+    mainClass = 'com.ad_passchanger.ad_passchanger.Main'
+}
+
+javafx {
+    version = '19'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+dependencies {
+    implementation('org.kordamp.ikonli:ikonli-javafx:12.3.1')
+    implementation 'io.github.palexdev:materialfx:11.13.9'
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jlink {
+    launcher {
+        name = 'AD_PassChanger'
+    }
+
+    jpackage{
+        installerOutputDir = file("$buildDir/installers")
+        imageOptions += ['--icon', 'src/main/resources/icons/icon.ico']
+        installerOptions = [
+                '--vendor', 'Wojciech Koziol 2023',
+                '--win-per-user-install', '--win-dir-chooser',
+                '--win-shortcut', '--win-menu'
+        ]
+
+    }
+}
