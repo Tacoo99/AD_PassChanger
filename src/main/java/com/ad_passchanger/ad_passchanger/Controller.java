@@ -216,8 +216,8 @@ public class Controller implements Initializable {
                     }
                 }
             }
-            checkAll();
             usersCheckList.setItems(users);
+            checkAll();
         }
     }
 
