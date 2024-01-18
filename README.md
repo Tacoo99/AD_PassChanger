@@ -3,7 +3,7 @@
  <p align="center"><b>Still in production,</b> <i>more functions soon.</i></p>
 <br>
  <p align="center"><b>Application screenshohot</p></b></p>
- <p><image src="https://github.com/Tacoo99/AD_PassChanger/assets/61277838/428fa84b-c547-479f-a979-b016de92166b"></p>
+ <p><image src="https://github.com/Tacoo99/AD_PassChanger/assets/61277838/84316738-efc7-4a10-a3a1-be0ec07da33e"></p>
  <br><br>
 
  <b>About program</b>
